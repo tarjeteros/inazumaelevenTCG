@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R2 JAPONÉS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('ui/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            margin-top: 20px;
+        }
+
+
+        .collections {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            display: inline-block;
+            border-radius: 10px;
+            width: 35%;
+            position: relative;
+        }
+
+        .corner-images {
+            position: absolute;
+            top: -20px;
+            width: 100px;
+            height: auto;
+        }
+
+        .corner-left {
+            left: -30px;
+            top: -30px;
+        }
+
+        .corner-right {
+            right: -30px;
+            top: -30px;
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+            h2::after {
+                content: "";
+                flex: 1;
+                border-bottom: 5px solid black;
+                margin-left: 10px;
+            }
+
+        .collections h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 38px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .collections h2::before,
+            .collections h2::after {
+                content: "";
+                flex: 1;
+                border-bottom: 5px solid black;
+                margin: 0 10px;
+                display: block;
+            }
+
+        .collection-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos separados para cada imagen */
+        .sobre-img {
+            width: 250px; /* Tamaño personalizado del sobre */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .info-img {
+            width: 350px; /* Tamaño personalizado de la info */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .gallery img {
+                width: 180px;
+                height: auto;
+                border-radius: 5px;
+                transition: transform 0.2s ease-in-out;
+                cursor: pointer;
+            }
+
+            .gallery div {
+                text-align: center;
+            }
+
+            .gallery img:hover {
+                transform: scale(1.1); /* Hace que la carta se agrande un 10% */
+            }
+
+            .gallery p {
+                font-weight: bold;
+            }
+
+        .modal {
+            display: none; /* El modal estará oculto al cargar la página */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;*/
+        }
+
+            .modal img {
+                max-width: 65vw; /* Ocupa hasta el 90% del ancho de la pantalla */
+                max-height: 65vh; /* Ocupa hasta el 90% de la altura de la pantalla */
+                width: auto; /* Permite que la imagen crezca proporcionalmente */
+                height: auto;
+                object-fit: contain; /* Evita que la imagen se deforme */
+                cursor: default;
+            }
+
+                .modal img:hover {
+                    transform: none; /* Desactiva el hover en la imagen ampliada */
+                }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Estilos del menú lateral */
+        .menu-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+            .menu-button img {
+                width: 50px;
+                height: auto;
+            }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: rgba(50, 50, 50, 0.95);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 999;
+            overflow-y: auto;
+            max-height: 100vh;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+            .side-menu::-webkit-scrollbar {
+                display: none;
+            }
+
+            .side-menu h3 {
+                color: white;
+                font-size: 20px;
+                padding: 10px 0;
+                margin: 10px auto;
+                text-align: center;
+                border-bottom: 2px solid white;
+                width: 80%;
+            }
+
+            .side-menu a {
+                display: block;
+                padding: 15px;
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+                .side-menu a:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+        @media (max-width: 768px) {
+            .collections {
+                width: 50%;
+            }
+
+            .corner-images {
+                width: 80px;
+            }
+
+            .collection-info {
+                flex-direction: column;
+            }
+
+            .gallery img {
+                width: 170px;
+            }
+
+            .collections h2::before,
+            .collections h2::after {
+                border-bottom: none;
+            }
+
+            .sobre-img {
+                width: 165px;
+            }
+
+            .info-img {
+                width: 220px;
+            }
+
+            .collection-info {
+                gap: 15px; /* Aumenta el espacio en PC */
+            }
+
+            .collections h2 {
+                font-size: 25px;
+            }
+
+            .modal {
+                display: none !important;
+            }
+
+            .gallery img:hover {
+                transform: none; /* No cambia el tamaño en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="ui/logo.png" alt="Inazuma Eleven TCG Logo" class="logo">
+    </header>
+
+    <!-- Botón para abrir el menú -->
+    <button class="menu-button" onclick="toggleMenu()">
+        <img src="botones/menu.png" alt="Menú">
+    </button>
+
+    <!-- Menú lateral -->
+    <div id="side-menu" class="side-menu">
+
+        <a href="https://www.youtube.com/@Tarjeteros">Canal de Tarjeteros</a>
+        <a href="https://linktr.ee/tcg_inazuma">Traducción de Cartas</a>
+        <a href="https://youtu.be/ExJHUj1Bmsc?si=Lni2C1W09aUMpjYa">Tutorial para Aprender a Jugar</a>
+        <a href="proximamente.html">Proyecto secreto</a>
+
+        <h3>Inazuma Eleven 1</h3>
+        <a href="1-1.html">1-1 ESP</a>
+        <a href="1-2.html">1-2</a>
+        <a href="R1.html">R1</a>
+
+        <h3>Inazuma Eleven 2</h3>
+        <a href="2-1.html">2-1</a>
+        <a href="2-2.html">2-2</a>
+        <a href="2-3.html">2-3</a>
+        <a href="2-4.html">2-4</a>
+        <a href="R2.html">R2</a>
+
+        <h3>Inazuma Eleven 3</h3>
+        <a href="3-1.html">3-1</a>
+        <a href="3-2.html">3-2</a>
+        <a href="3-3.html">3-3</a>
+        <a href="3-4.html">3-4</a>
+        <a href="3-5.html">3-5</a>
+        <a href="3-6.html">3-6</a>
+
+        <h3>Barajas</h3>
+        <a href="y1.html">Y-1 ESP</a>
+        <a href="y2.html">Y-2</a>
+        <a href="y3.html">Y-3</a>
+        <a href="y4.html">Y-4</a>
+        <a href="y5.html">Y-5</a>
+        <a href="y6.html">Y-6</a>
+        <a href="y7.html">Y-7</a>
+        <a href="y8.html">Y-8</a>
+        <a href="y9.html">Y-9</a>
+
+        <h3>Promos</h3>
+        <a href="P.html">P1</a>
+        <a href="P2">P2</a>
+
+        <h3>Inazuma Eleven GO</h3>
+        <a href="IG-00.html">IG-00</a>
+        <a href="IG-01.html">IG-01</a>
+        <a href="IG-02.html">IG-02</a>
+        <a href="IG-03.html">IG-03</a>
+        <a href="IG-04.html">IG-04</a>
+        <a href="IG-05.html">IG-05</a>
+
+        <h3>Inazuma Eleven GO Chrono Stone</h3>
+        <a href="IG-07.html">IG-07</a>
+        <a href="IG-08.html">IG-08</a>
+        <a href="IG-09.html">IG-09</a>
+        <a href="IG-010.html">IG-10</a>
+        <a href="IG-012.html">IG-12</a>
+
+        <h3>Inazuma Eleven GO Galaxy</h3>
+        <a href="IG-014.html">IG-14</a>
+        <a href="IG-015.html">IG-15</a>
+        <a href="IG-016.html">IG-16</a>
+
+        <h3>Colecciones especiales</h3>
+        <a href="IG-06.html">IG-06</a>
+        <a href="IG-011.html">IG-11</a>
+        <a href="IG-013.html">IG-13</a>
+        <a href="IG-017.html">IG-17</a>
+
+        <h3>Promos GO</h3>
+        <a href="PromosGO.html">Promos GO</a>
+
+        <h3>Colecciones traducidas</h3>
+        <a href="1-2 ESP.html">1-2 ESP</a>
+
+        <h3> </h3>
+        <h3> </h3>
+
+    </div>
+
+    <section class="collections">
+        <img src="ui/c1.png" alt="Esquina Izquierda" class="corner-images corner-left">
+        <img src="ui/c2.png" alt="Esquina Derecha" class="corner-images corner-right">
+
+        <h2>R2 JAPONÉS</h2>
+
+        <div class="collection-info">
+            <img src="R2/sobre.png" alt="Sobre de la colección" class="sobre-img">
+            <img src="R2/info.png" alt="Información de la colección" class="info-img">
+        </div>
+
+        <div class="gallery">
+            <div class="gallery">
+
+                <div><img src="R2/1.jpg" alt="1/171" onclick="openModal(this.src)"><p>1/171</p></div>
+                <div><img src="R2/2.jpg" alt="2/171" onclick="openModal(this.src)"><p>2/171</p></div>
+                <div><img src="R2/3.jpg" alt="3/171" onclick="openModal(this.src)"><p>3/171</p></div>
+                <div><img src="R2/4.jpg" alt="4/171" onclick="openModal(this.src)"><p>4/171</p></div>
+                <div><img src="R2/5.jpg" alt="5/171" onclick="openModal(this.src)"><p>5/171</p></div>
+                <div><img src="R2/6.jpg" alt="6/171" onclick="openModal(this.src)"><p>6/171</p></div>
+                <div><img src="R2/7.jpg" alt="7/171" onclick="openModal(this.src)"><p>7/171</p></div>
+                <div><img src="R2/8.jpg" alt="8/171" onclick="openModal(this.src)"><p>8/171</p></div>
+                <div><img src="R2/9.jpg" alt="9/171" onclick="openModal(this.src)"><p>9/171</p></div>
+                <div><img src="R2/10.jpg" alt="10/171" onclick="openModal(this.src)"><p>10/171</p></div>
+                <div><img src="R2/11.jpg" alt="11/171" onclick="openModal(this.src)"><p>11/171</p></div>
+                <div><img src="R2/12.jpg" alt="12/171" onclick="openModal(this.src)"><p>12/171</p></div>
+                <div><img src="R2/13.jpg" alt="13/171" onclick="openModal(this.src)"><p>13/171</p></div>
+                <div><img src="R2/14.jpg" alt="14/171" onclick="openModal(this.src)"><p>14/171</p></div>
+                <div><img src="R2/15.jpg" alt="15/171" onclick="openModal(this.src)"><p>15/171</p></div>
+                <div><img src="R2/16.jpg" alt="16/171" onclick="openModal(this.src)"><p>16/171</p></div>
+                <div><img src="R2/17.jpg" alt="17/171" onclick="openModal(this.src)"><p>17/171</p></div>
+                <div><img src="R2/18.jpg" alt="18/171" onclick="openModal(this.src)"><p>18/171</p></div>
+                <div><img src="R2/19.jpg" alt="19/171" onclick="openModal(this.src)"><p>19/171</p></div>
+                <div><img src="R2/20.jpg" alt="20/171" onclick="openModal(this.src)"><p>20/171</p></div>
+                <div><img src="R2/21.jpg" alt="21/171" onclick="openModal(this.src)"><p>21/171</p></div>
+                <div><img src="R2/22.jpg" alt="22/171" onclick="openModal(this.src)"><p>22/171</p></div>
+                <div><img src="R2/23.jpg" alt="23/171" onclick="openModal(this.src)"><p>23/171</p></div>
+                <div><img src="R2/24.jpg" alt="24/171" onclick="openModal(this.src)"><p>24/171</p></div>
+                <div><img src="R2/25.jpg" alt="25/171" onclick="openModal(this.src)"><p>25/171</p></div>
+                <div><img src="R2/26.jpg" alt="26/171" onclick="openModal(this.src)"><p>26/171</p></div>
+                <div><img src="R2/27.jpg" alt="27/171" onclick="openModal(this.src)"><p>27/171</p></div>
+                <div><img src="R2/28.jpg" alt="28/171" onclick="openModal(this.src)"><p>28/171</p></div>
+                <div><img src="R2/29.jpg" alt="29/171" onclick="openModal(this.src)"><p>29/171</p></div>
+                <div><img src="R2/30.jpg" alt="30/171" onclick="openModal(this.src)"><p>30/171</p></div>
+                <div><img src="R2/31.jpg" alt="31/171" onclick="openModal(this.src)"><p>31/171</p></div>
+                <div><img src="R2/32.jpg" alt="32/171" onclick="openModal(this.src)"><p>32/171</p></div>
+                <div><img src="R2/33.jpg" alt="33/171" onclick="openModal(this.src)"><p>33/171</p></div>
+                <div><img src="R2/34.jpg" alt="34/171" onclick="openModal(this.src)"><p>34/171</p></div>
+                <div><img src="R2/35.jpg" alt="35/171" onclick="openModal(this.src)"><p>35/171</p></div>
+                <div><img src="R2/36.jpg" alt="36/171" onclick="openModal(this.src)"><p>36/171</p></div>
+                <div><img src="R2/37.jpg" alt="37/171" onclick="openModal(this.src)"><p>37/171</p></div>
+                <div><img src="R2/38.jpg" alt="38/171" onclick="openModal(this.src)"><p>38/171</p></div>
+                <div><img src="R2/39.jpg" alt="39/171" onclick="openModal(this.src)"><p>39/171</p></div>
+                <div><img src="R2/40.jpg" alt="40/171" onclick="openModal(this.src)"><p>40/171</p></div>
+                <div><img src="R2/41.jpg" alt="41/171" onclick="openModal(this.src)"><p>41/171</p></div>
+                <div><img src="R2/42.jpg" alt="42/171" onclick="openModal(this.src)"><p>42/171</p></div>
+                <div><img src="R2/43.jpg" alt="43/171" onclick="openModal(this.src)"><p>43/171</p></div>
+                <div><img src="R2/44.jpg" alt="44/171" onclick="openModal(this.src)"><p>44/171</p></div>
+                <div><img src="R2/45.jpg" alt="45/171" onclick="openModal(this.src)"><p>45/171</p></div>
+                <div><img src="R2/46.jpg" alt="46/171" onclick="openModal(this.src)"><p>46/171</p></div>
+                <div><img src="R2/47.jpg" alt="47/171" onclick="openModal(this.src)"><p>47/171</p></div>
+                <div><img src="R2/48.jpg" alt="48/171" onclick="openModal(this.src)"><p>48/171</p></div>
+                <div><img src="R2/49.jpg" alt="49/171" onclick="openModal(this.src)"><p>49/171</p></div>
+                <div><img src="R2/50.jpg" alt="50/171" onclick="openModal(this.src)"><p>50/171</p></div>
+                <div><img src="R2/51.jpg" alt="51/171" onclick="openModal(this.src)"><p>51/171</p></div>
+                <div><img src="R2/52.jpg" alt="52/171" onclick="openModal(this.src)"><p>52/171</p></div>
+                <div><img src="R2/53.jpg" alt="53/171" onclick="openModal(this.src)"><p>53/171</p></div>
+                <div><img src="R2/54.jpg" alt="54/171" onclick="openModal(this.src)"><p>54/171</p></div>
+                <div><img src="R2/55.jpg" alt="55/171" onclick="openModal(this.src)"><p>55/171</p></div>
+                <div><img src="R2/56.jpg" alt="56/171" onclick="openModal(this.src)"><p>56/171</p></div>
+                <div><img src="R2/57.jpg" alt="57/171" onclick="openModal(this.src)"><p>57/171</p></div>
+                <div><img src="R2/58.jpg" alt="58/171" onclick="openModal(this.src)"><p>58/171</p></div>
+                <div><img src="R2/59.jpg" alt="59/171" onclick="openModal(this.src)"><p>59/171</p></div>
+                <div><img src="R2/60.jpg" alt="60/171" onclick="openModal(this.src)"><p>60/171</p></div>
+                <div><img src="R2/61.jpg" alt="61/171" onclick="openModal(this.src)"><p>61/171</p></div>
+                <div><img src="R2/62.jpg" alt="62/171" onclick="openModal(this.src)"><p>62/171</p></div>
+                <div><img src="R2/63.jpg" alt="63/171" onclick="openModal(this.src)"><p>63/171</p></div>
+                <div><img src="R2/64.jpg" alt="64/171" onclick="openModal(this.src)"><p>64/171</p></div>
+                <div><img src="R2/65.jpg" alt="65/171" onclick="openModal(this.src)"><p>65/171</p></div>
+                <div><img src="R2/66.jpg" alt="66/171" onclick="openModal(this.src)"><p>66/171</p></div>
+                <div><img src="R2/67.jpg" alt="67/171" onclick="openModal(this.src)"><p>67/171</p></div>
+                <div><img src="R2/68.jpg" alt="68/171" onclick="openModal(this.src)"><p>68/171</p></div>
+                <div><img src="R2/69.jpg" alt="69/171" onclick="openModal(this.src)"><p>69/171</p></div>
+                <div><img src="R2/70.jpg" alt="70/171" onclick="openModal(this.src)"><p>70/171</p></div>
+                <div><img src="R2/71.jpg" alt="71/171" onclick="openModal(this.src)"><p>71/171</p></div>
+                <div><img src="R2/72.jpg" alt="72/171" onclick="openModal(this.src)"><p>72/171</p></div>
+                <div><img src="R2/73.jpg" alt="73/171" onclick="openModal(this.src)"><p>73/171</p></div>
+                <div><img src="R2/74.jpg" alt="74/171" onclick="openModal(this.src)"><p>74/171</p></div>
+                <div><img src="R2/75.jpg" alt="75/171" onclick="openModal(this.src)"><p>75/171</p></div>
+                <div><img src="R2/76.jpg" alt="76/171" onclick="openModal(this.src)"><p>76/171</p></div>
+                <div><img src="R2/77.jpg" alt="77/171" onclick="openModal(this.src)"><p>77/171</p></div>
+                <div><img src="R2/78.jpg" alt="78/171" onclick="openModal(this.src)"><p>78/171</p></div>
+                <div><img src="R2/79.jpg" alt="79/171" onclick="openModal(this.src)"><p>79/171</p></div>
+                <div><img src="R2/80.jpg" alt="80/171" onclick="openModal(this.src)"><p>80/171</p></div>
+                <div><img src="R2/81.jpg" alt="81/171" onclick="openModal(this.src)"><p>81/171</p></div>
+                <div><img src="R2/82.jpg" alt="82/171" onclick="openModal(this.src)"><p>82/171</p></div>
+                <div><img src="R2/83.jpg" alt="83/171" onclick="openModal(this.src)"><p>83/171</p></div>
+                <div><img src="R2/84.jpg" alt="84/171" onclick="openModal(this.src)"><p>84/171</p></div>
+                <div><img src="R2/85.jpg" alt="85/171" onclick="openModal(this.src)"><p>85/171</p></div>
+                <div><img src="R2/86.jpg" alt="86/171" onclick="openModal(this.src)"><p>86/171</p></div>
+                <div><img src="R2/87.jpg" alt="87/171" onclick="openModal(this.src)"><p>87/171</p></div>
+                <div><img src="R2/88.jpg" alt="88/171" onclick="openModal(this.src)"><p>88/171</p></div>
+                <div><img src="R2/89.jpg" alt="89/171" onclick="openModal(this.src)"><p>89/171</p></div>
+                <div><img src="R2/90.jpg" alt="90/171" onclick="openModal(this.src)"><p>90/171</p></div>
+                <div><img src="R2/91.jpg" alt="91/171" onclick="openModal(this.src)"><p>91/171</p></div>
+                <div><img src="R2/92.jpg" alt="92/171" onclick="openModal(this.src)"><p>92/171</p></div>
+                <div><img src="R2/93.jpg" alt="93/171" onclick="openModal(this.src)"><p>93/171</p></div>
+                <div><img src="R2/94.jpg" alt="94/171" onclick="openModal(this.src)"><p>94/171</p></div>
+                <div><img src="R2/95.jpg" alt="95/171" onclick="openModal(this.src)"><p>95/171</p></div>
+                <div><img src="R2/96.jpg" alt="96/171" onclick="openModal(this.src)"><p>96/171</p></div>
+                <div><img src="R2/97.jpg" alt="97/171" onclick="openModal(this.src)"><p>97/171</p></div>
+                <div><img src="R2/98.jpg" alt="98/171" onclick="openModal(this.src)"><p>98/171</p></div>
+                <div><img src="R2/99.jpg" alt="99/171" onclick="openModal(this.src)"><p>99/171</p></div>
+                <div><img src="R2/100.jpg" alt="100/171" onclick="openModal(this.src)"><p>100/171</p></div>
+                <div><img src="R2/101.jpg" alt="101/171" onclick="openModal(this.src)"><p>101/171</p></div>
+                <div><img src="R2/102.jpg" alt="102/171" onclick="openModal(this.src)"><p>102/171</p></div>
+                <div><img src="R2/103.jpg" alt="103/171" onclick="openModal(this.src)"><p>103/171</p></div>
+                <div><img src="R2/104.jpg" alt="104/171" onclick="openModal(this.src)"><p>104/171</p></div>
+                <div><img src="R2/105.jpg" alt="105/171" onclick="openModal(this.src)"><p>105/171</p></div>
+                <div><img src="R2/106.jpg" alt="106/171" onclick="openModal(this.src)"><p>106/171</p></div>
+                <div><img src="R2/107.jpg" alt="107/171" onclick="openModal(this.src)"><p>107/171</p></div>
+                <div><img src="R2/108.jpg" alt="108/171" onclick="openModal(this.src)"><p>108/171</p></div>
+                <div><img src="R2/109.jpg" alt="109/171" onclick="openModal(this.src)"><p>109/171</p></div>
+                <div><img src="R2/110.jpg" alt="110/171" onclick="openModal(this.src)"><p>110/171</p></div>
+                <div><img src="R2/111.jpg" alt="111/171" onclick="openModal(this.src)"><p>111/171</p></div>
+                <div><img src="R2/112.jpg" alt="112/171" onclick="openModal(this.src)"><p>112/171</p></div>
+                <div><img src="R2/113.jpg" alt="113/171" onclick="openModal(this.src)"><p>113/171</p></div>
+                <div><img src="R2/114.jpg" alt="114/171" onclick="openModal(this.src)"><p>114/171</p></div>
+                <div><img src="R2/115.jpg" alt="115/171" onclick="openModal(this.src)"><p>115/171</p></div>
+                <div><img src="R2/116.jpg" alt="116/171" onclick="openModal(this.src)"><p>116/171</p></div>
+                <div><img src="R2/117.jpg" alt="117/171" onclick="openModal(this.src)"><p>117/171</p></div>
+                <div><img src="R2/118.jpg" alt="118/171" onclick="openModal(this.src)"><p>118/171</p></div>
+                <div><img src="R2/119.jpg" alt="119/171" onclick="openModal(this.src)"><p>119/171</p></div>
+                <div><img src="R2/120.jpg" alt="120/171" onclick="openModal(this.src)"><p>120/171</p></div>
+                <div><img src="R2/121.jpg" alt="121/171" onclick="openModal(this.src)"><p>121/171</p></div>
+                <div><img src="R2/122.jpg" alt="122/171" onclick="openModal(this.src)"><p>122/171</p></div>
+                <div><img src="R2/123.jpg" alt="123/171" onclick="openModal(this.src)"><p>123/171</p></div>
+                <div><img src="R2/124.jpg" alt="124/171" onclick="openModal(this.src)"><p>124/171</p></div>
+                <div><img src="R2/125.jpg" alt="125/171" onclick="openModal(this.src)"><p>125/171</p></div>
+                <div><img src="R2/126.jpg" alt="126/171" onclick="openModal(this.src)"><p>126/171</p></div>
+                <div><img src="R2/127.jpg" alt="127/171" onclick="openModal(this.src)"><p>127/171</p></div>
+                <div><img src="R2/128.jpg" alt="128/171" onclick="openModal(this.src)"><p>128/171</p></div>
+                <div><img src="R2/129.jpg" alt="129/171" onclick="openModal(this.src)"><p>129/171</p></div>
+                <div><img src="R2/130.jpg" alt="130/171" onclick="openModal(this.src)"><p>130/171</p></div>
+                <div><img src="R2/131.jpg" alt="131/171" onclick="openModal(this.src)"><p>131/171</p></div>
+                <div><img src="R2/132.jpg" alt="132/171" onclick="openModal(this.src)"><p>132/171</p></div>
+                <div><img src="R2/133.jpg" alt="133/171" onclick="openModal(this.src)"><p>133/171</p></div>
+                <div><img src="R2/134.jpg" alt="134/171" onclick="openModal(this.src)"><p>134/171</p></div>
+                <div><img src="R2/135.jpg" alt="135/171" onclick="openModal(this.src)"><p>135/171</p></div>
+                <div><img src="R2/136.jpg" alt="136/171" onclick="openModal(this.src)"><p>136/171</p></div>
+                <div><img src="R2/137.jpg" alt="137/171" onclick="openModal(this.src)"><p>137/171</p></div>
+                <div><img src="R2/138.jpg" alt="138/171" onclick="openModal(this.src)"><p>138/171</p></div>
+                <div><img src="R2/139.jpg" alt="139/171" onclick="openModal(this.src)"><p>139/171</p></div>
+                <div><img src="R2/140.jpg" alt="140/171" onclick="openModal(this.src)"><p>140/171</p></div>
+                <div><img src="R2/141.jpg" alt="141/171" onclick="openModal(this.src)"><p>141/171</p></div>
+                <div><img src="R2/142.jpg" alt="142/171" onclick="openModal(this.src)"><p>142/171</p></div>
+                <div><img src="R2/143.jpg" alt="143/171" onclick="openModal(this.src)"><p>143/171</p></div>
+                <div><img src="R2/144.jpg" alt="144/171" onclick="openModal(this.src)"><p>144/171</p></div>
+                <div><img src="R2/145.jpg" alt="145/171" onclick="openModal(this.src)"><p>145/171</p></div>
+                <div><img src="R2/146.jpg" alt="146/171" onclick="openModal(this.src)"><p>146/171</p></div>
+                <div><img src="R2/147.jpg" alt="147/171" onclick="openModal(this.src)"><p>147/171</p></div>
+                <div><img src="R2/148.jpg" alt="148/171" onclick="openModal(this.src)"><p>148/171</p></div>
+                <div><img src="R2/149.jpg" alt="149/171" onclick="openModal(this.src)"><p>149/171</p></div>
+                <div><img src="R2/150.jpg" alt="150/171" onclick="openModal(this.src)"><p>150/171</p></div>
+                <div><img src="R2/151.jpg" alt="151/171" onclick="openModal(this.src)"><p>151/171</p></div>
+                <div><img src="R2/152.jpg" alt="152/171" onclick="openModal(this.src)"><p>152/171</p></div>
+                <div><img src="R2/153.jpg" alt="153/171" onclick="openModal(this.src)"><p>153/171</p></div>
+                <div><img src="R2/154.jpg" alt="154/171" onclick="openModal(this.src)"><p>154/171</p></div>
+                <div><img src="R2/155.jpg" alt="155/171" onclick="openModal(this.src)"><p>155/171</p></div>
+                <div><img src="R2/156.jpg" alt="156/171" onclick="openModal(this.src)"><p>156/171</p></div>
+                <div><img src="R2/157.jpg" alt="157/171" onclick="openModal(this.src)"><p>157/171</p></div>
+                <div><img src="R2/158.jpg" alt="158/171" onclick="openModal(this.src)"><p>158/171</p></div>
+                <div><img src="R2/159.jpg" alt="159/171" onclick="openModal(this.src)"><p>159/171</p></div>
+                <div><img src="R2/160.jpg" alt="160/171" onclick="openModal(this.src)"><p>160/171</p></div>
+                <div><img src="R2/161.jpg" alt="161/171" onclick="openModal(this.src)"><p>161/171</p></div>
+                <div><img src="R2/162.jpg" alt="162/171" onclick="openModal(this.src)"><p>162/171</p></div>
+                <div><img src="R2/163.jpg" alt="163/171" onclick="openModal(this.src)"><p>163/171</p></div>
+                <div><img src="R2/164.jpg" alt="164/171" onclick="openModal(this.src)"><p>164/171</p></div>
+                <div><img src="R2/165.jpg" alt="165/171" onclick="openModal(this.src)"><p>165/171</p></div>
+                <div><img src="R2/166.jpg" alt="166/171" onclick="openModal(this.src)"><p>166/171</p></div>
+                <div><img src="R2/167.jpg" alt="167/171" onclick="openModal(this.src)"><p>167/171</p></div>
+                <div><img src="R2/168.jpg" alt="168/171" onclick="openModal(this.src)"><p>168/171</p></div>
+                <div><img src="R2/169.jpg" alt="169/171" onclick="openModal(this.src)"><p>169/171</p></div>
+                <div><img src="R2/170.jpg" alt="170/171" onclick="openModal(this.src)"><p>170/171</p></div>
+                <div><img src="R2/171.jpg" alt="171/171" onclick="openModal(this.src)"><p>171/171</p></div>
+
+
+            </div>
+
+            <div id="modal" class="modal" onclick="closeModal()">
+                <img id="modal-img" src="" onclick="event.stopPropagation();">
+            </div>
+
+</section>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("side-menu");
+            if (menu.style.left === "0px") {
+                menu.style.left = "-300px";
+            } else {
+                menu.style.left = "0px";
+            }
+        }
+
+        function openModal(imgSrc) {
+            var modal = document.getElementById("modal");
+            var modalImg = document.getElementById("modal-img");
+
+            modal.style.display = "flex"; // Se muestra solo cuando se hace clic en una imagen
+            modalImg.src = imgSrc;
+        }
+
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Cerrar con tecla "Escape"
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

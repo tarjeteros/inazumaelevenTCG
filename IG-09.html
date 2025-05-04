@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IG-09 JAPONÉS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('ui/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            margin-top: 20px;
+        }
+
+
+        .collections {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            display: inline-block;
+            border-radius: 10px;
+            width: 35%;
+            position: relative;
+        }
+
+        .corner-images {
+            position: absolute;
+            top: -20px;
+            width: 100px;
+            height: auto;
+        }
+
+        .corner-left {
+            left: -30px;
+            top: -30px;
+        }
+
+        .corner-right {
+            right: -30px;
+            top: -30px;
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+            h2::after {
+                content: "";
+                flex: 1;
+                border-bottom: 5px solid black;
+                margin-left: 10px;
+            }
+
+        .collections h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 38px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .collections h2::before,
+            .collections h2::after {
+                content: "";
+                flex: 1;
+                border-bottom: 5px solid black;
+                margin: 0 10px;
+                display: block;
+            }
+
+        .collection-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos separados para cada imagen */
+        .sobre-img {
+            width: 250px; /* Tamaño personalizado del sobre */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .info-img {
+            width: 350px; /* Tamaño personalizado de la info */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .gallery img {
+                width: 180px;
+                height: auto;
+                border-radius: 5px;
+                transition: transform 0.2s ease-in-out;
+                cursor: pointer;
+            }
+
+            .gallery div {
+                text-align: center;
+            }
+
+            .gallery img:hover {
+                transform: scale(1.1); /* Hace que la carta se agrande un 10% */
+            }
+
+            .gallery p {
+                font-weight: bold;
+            }
+
+        .modal {
+            display: none; /* El modal estará oculto al cargar la página */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;*/
+        }
+
+            .modal img {
+                max-width: 65vw; /* Ocupa hasta el 90% del ancho de la pantalla */
+                max-height: 65vh; /* Ocupa hasta el 90% de la altura de la pantalla */
+                width: auto; /* Permite que la imagen crezca proporcionalmente */
+                height: auto;
+                object-fit: contain; /* Evita que la imagen se deforme */
+                cursor: default;
+            }
+
+                .modal img:hover {
+                    transform: none; /* Desactiva el hover en la imagen ampliada */
+                }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Estilos del menú lateral */
+        .menu-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+            .menu-button img {
+                width: 50px;
+                height: auto;
+            }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: rgba(50, 50, 50, 0.95);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 999;
+            overflow-y: auto;
+            max-height: 100vh;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+            .side-menu::-webkit-scrollbar {
+                display: none;
+            }
+
+            .side-menu h3 {
+                color: white;
+                font-size: 20px;
+                padding: 10px 0;
+                margin: 10px auto;
+                text-align: center;
+                border-bottom: 2px solid white;
+                width: 80%;
+            }
+
+            .side-menu a {
+                display: block;
+                padding: 15px;
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+                .side-menu a:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+        @media (max-width: 768px) {
+            .collections {
+                width: 50%;
+            }
+
+            .corner-images {
+                width: 80px;
+            }
+
+            .collection-info {
+                flex-direction: column;
+            }
+
+            .gallery img {
+                width: 170px;
+            }
+
+            .collections h2::before,
+            .collections h2::after {
+                border-bottom: none;
+            }
+
+            .sobre-img {
+                width: 165px;
+            }
+
+            .info-img {
+                width: 220px;
+            }
+
+            .collection-info {
+                gap: 15px; /* Aumenta el espacio en PC */
+            }
+
+            .collections h2 {
+                font-size: 25px;
+            }
+
+            .modal {
+                display: none !important;
+            }
+
+            .gallery img:hover {
+                transform: none; /* No cambia el tamaño en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="ui/logo.png" alt="Inazuma Eleven TCG Logo" class="logo">
+    </header>
+
+    <!-- Botón para abrir el menú -->
+    <button class="menu-button" onclick="toggleMenu()">
+        <img src="botones/menu.png" alt="Menú">
+    </button>
+
+    <!-- Menú lateral -->
+    <div id="side-menu" class="side-menu">
+
+        <a href="https://www.youtube.com/@Tarjeteros">Canal de Tarjeteros</a>
+        <a href="https://linktr.ee/tcg_inazuma">Traducción de Cartas</a>
+        <a href="https://youtu.be/ExJHUj1Bmsc?si=Lni2C1W09aUMpjYa">Tutorial para Aprender a Jugar</a>
+        <a href="proximamente.html">Proyecto secreto</a>
+
+        <h3>Inazuma Eleven 1</h3>
+        <a href="1-1.html">1-1 ESP</a>
+        <a href="1-2.html">1-2</a>
+        <a href="R1.html">R1</a>
+
+        <h3>Inazuma Eleven 2</h3>
+        <a href="2-1.html">2-1</a>
+        <a href="2-2.html">2-2</a>
+        <a href="2-3.html">2-3</a>
+        <a href="2-4.html">2-4</a>
+        <a href="R2.html">R2</a>
+
+        <h3>Inazuma Eleven 3</h3>
+        <a href="3-1.html">3-1</a>
+        <a href="3-2.html">3-2</a>
+        <a href="3-3.html">3-3</a>
+        <a href="3-4.html">3-4</a>
+        <a href="3-5.html">3-5</a>
+        <a href="3-6.html">3-6</a>
+
+        <h3>Barajas</h3>
+        <a href="y1.html">Y-1 ESP</a>
+        <a href="y2.html">Y-2</a>
+        <a href="y3.html">Y-3</a>
+        <a href="y4.html">Y-4</a>
+        <a href="y5.html">Y-5</a>
+        <a href="y6.html">Y-6</a>
+        <a href="y7.html">Y-7</a>
+        <a href="y8.html">Y-8</a>
+        <a href="y9.html">Y-9</a>
+
+        <h3>Promos</h3>
+        <a href="P.html">P1</a>
+        <a href="P2">P2</a>
+
+        <h3>Inazuma Eleven GO</h3>
+        <a href="IG-00.html">IG-00</a>
+        <a href="IG-01.html">IG-01</a>
+        <a href="IG-02.html">IG-02</a>
+        <a href="IG-03.html">IG-03</a>
+        <a href="IG-04.html">IG-04</a>
+        <a href="IG-05.html">IG-05</a>
+
+        <h3>Inazuma Eleven GO Chrono Stone</h3>
+        <a href="IG-07.html">IG-07</a>
+        <a href="IG-08.html">IG-08</a>
+        <a href="IG-09.html">IG-09</a>
+        <a href="IG-010.html">IG-10</a>
+        <a href="IG-012.html">IG-12</a>
+
+        <h3>Inazuma Eleven GO Galaxy</h3>
+        <a href="IG-014.html">IG-14</a>
+        <a href="IG-015.html">IG-15</a>
+        <a href="IG-016.html">IG-16</a>
+
+        <h3>Colecciones especiales</h3>
+        <a href="IG-06.html">IG-06</a>
+        <a href="IG-011.html">IG-11</a>
+        <a href="IG-013.html">IG-13</a>
+        <a href="IG-017.html">IG-17</a>
+
+        <h3>Promos GO</h3>
+        <a href="PromosGO.html">Promos GO</a>
+
+        <h3>Colecciones traducidas</h3>
+        <a href="1-2 ESP.html">1-2 ESP</a>
+
+        <h3> </h3>
+        <h3> </h3>
+
+    </div>
+
+    <section class="collections">
+        <img src="ui/c1.png" alt="Esquina Izquierda" class="corner-images corner-left">
+        <img src="ui/c2.png" alt="Esquina Derecha" class="corner-images corner-right">
+
+        <h2>IG-09 JAPONÉS</h2>
+
+        <div class="collection-info">
+            <img src="IG-09/sobre.png" alt="Sobre de la colección" class="sobre-img">
+            <img src="IG-09/info.png" alt="Información de la colección" class="info-img">
+        </div>
+
+        <div class="gallery">
+            <div class="gallery">
+
+                <div><img src="IG-09/IG-09-001.jpg" alt="1/64" onclick="openModal(this.src)"><p>1/64</p></div>
+                <div><img src="IG-09/IG-09-002.jpg" alt="2/64" onclick="openModal(this.src)"><p>2/64</p></div>
+                <div><img src="IG-09/IG-09-003.jpg" alt="3/64" onclick="openModal(this.src)"><p>3/64</p></div>
+                <div><img src="IG-09/IG-09-004.jpg" alt="4/64" onclick="openModal(this.src)"><p>4/64</p></div>
+                <div><img src="IG-09/IG-09-005.jpg" alt="5/64" onclick="openModal(this.src)"><p>5/64</p></div>
+                <div><img src="IG-09/IG-09-006.jpg" alt="6/64" onclick="openModal(this.src)"><p>6/64</p></div>
+                <div><img src="IG-09/IG-09-007.jpg" alt="7/64" onclick="openModal(this.src)"><p>7/64</p></div>
+                <div><img src="IG-09/IG-09-008.jpg" alt="8/64" onclick="openModal(this.src)"><p>8/64</p></div>
+                <div><img src="IG-09/IG-09-009.jpg" alt="9/64" onclick="openModal(this.src)"><p>9/64</p></div>
+                <div><img src="IG-09/IG-09-010.jpg" alt="10/64" onclick="openModal(this.src)"><p>10/64</p></div>
+                <div><img src="IG-09/IG-09-011.jpg" alt="11/64" onclick="openModal(this.src)"><p>11/64</p></div>
+                <div><img src="IG-09/IG-09-012.jpg" alt="12/64" onclick="openModal(this.src)"><p>12/64</p></div>
+                <div><img src="IG-09/IG-09-013.jpg" alt="13/64" onclick="openModal(this.src)"><p>13/64</p></div>
+                <div><img src="IG-09/IG-09-014.jpg" alt="14/64" onclick="openModal(this.src)"><p>14/64</p></div>
+                <div><img src="IG-09/IG-09-015.jpg" alt="15/64" onclick="openModal(this.src)"><p>15/64</p></div>
+                <div><img src="IG-09/IG-09-016.jpg" alt="16/64" onclick="openModal(this.src)"><p>16/64</p></div>
+                <div><img src="IG-09/IG-09-017.jpg" alt="17/64" onclick="openModal(this.src)"><p>17/64</p></div>
+                <div><img src="IG-09/IG-09-018.jpg" alt="18/64" onclick="openModal(this.src)"><p>18/64</p></div>
+                <div><img src="IG-09/IG-09-019.jpg" alt="19/64" onclick="openModal(this.src)"><p>19/64</p></div>
+                <div><img src="IG-09/IG-09-020.jpg" alt="20/64" onclick="openModal(this.src)"><p>20/64</p></div>
+                <div><img src="IG-09/IG-09-021.jpg" alt="21/64" onclick="openModal(this.src)"><p>21/64</p></div>
+                <div><img src="IG-09/IG-09-022.jpg" alt="22/64" onclick="openModal(this.src)"><p>22/64</p></div>
+                <div><img src="IG-09/IG-09-023.jpg" alt="23/64" onclick="openModal(this.src)"><p>23/64</p></div>
+                <div><img src="IG-09/IG-09-024.jpg" alt="24/64" onclick="openModal(this.src)"><p>24/64</p></div>
+                <div><img src="IG-09/IG-09-025.jpg" alt="25/64" onclick="openModal(this.src)"><p>25/64</p></div>
+                <div><img src="IG-09/IG-09-026.jpg" alt="26/64" onclick="openModal(this.src)"><p>26/64</p></div>
+                <div><img src="IG-09/IG-09-027.jpg" alt="27/64" onclick="openModal(this.src)"><p>27/64</p></div>
+                <div><img src="IG-09/IG-09-028.jpg" alt="28/64" onclick="openModal(this.src)"><p>28/64</p></div>
+                <div><img src="IG-09/IG-09-029.jpg" alt="29/64" onclick="openModal(this.src)"><p>29/64</p></div>
+                <div><img src="IG-09/IG-09-030.jpg" alt="30/64" onclick="openModal(this.src)"><p>30/64</p></div>
+                <div><img src="IG-09/IG-09-031.jpg" alt="31/64" onclick="openModal(this.src)"><p>31/64</p></div>
+                <div><img src="IG-09/IG-09-032.jpg" alt="32/64" onclick="openModal(this.src)"><p>32/64</p></div>
+                <div><img src="IG-09/IG-09-033.jpg" alt="33/64" onclick="openModal(this.src)"><p>33/64</p></div>
+                <div><img src="IG-09/IG-09-034.jpg" alt="34/64" onclick="openModal(this.src)"><p>34/64</p></div>
+                <div><img src="IG-09/IG-09-035.jpg" alt="35/64" onclick="openModal(this.src)"><p>35/64</p></div>
+                <div><img src="IG-09/IG-09-036.jpg" alt="36/64" onclick="openModal(this.src)"><p>36/64</p></div>
+                <div><img src="IG-09/IG-09-037.jpg" alt="37/64" onclick="openModal(this.src)"><p>37/64</p></div>
+                <div><img src="IG-09/IG-09-038.jpg" alt="38/64" onclick="openModal(this.src)"><p>38/64</p></div>
+                <div><img src="IG-09/IG-09-039.jpg" alt="39/64" onclick="openModal(this.src)"><p>39/64</p></div>
+                <div><img src="IG-09/IG-09-040.jpg" alt="40/64" onclick="openModal(this.src)"><p>40/64</p></div>
+                <div><img src="IG-09/IG-09-041.jpg" alt="41/64" onclick="openModal(this.src)"><p>41/64</p></div>
+                <div><img src="IG-09/IG-09-042.jpg" alt="42/64" onclick="openModal(this.src)"><p>42/64</p></div>
+                <div><img src="IG-09/IG-09-043.jpg" alt="43/64" onclick="openModal(this.src)"><p>43/64</p></div>
+                <div><img src="IG-09/IG-09-044.jpg" alt="44/64" onclick="openModal(this.src)"><p>44/64</p></div>
+                <div><img src="IG-09/IG-09-045.jpg" alt="45/64" onclick="openModal(this.src)"><p>45/64</p></div>
+                <div><img src="IG-09/IG-09-046.jpg" alt="46/64" onclick="openModal(this.src)"><p>46/64</p></div>
+                <div><img src="IG-09/IG-09-047.jpg" alt="47/64" onclick="openModal(this.src)"><p>47/64</p></div>
+                <div><img src="IG-09/IG-09-048.jpg" alt="48/64" onclick="openModal(this.src)"><p>48/64</p></div>
+                <div><img src="IG-09/IG-09-049.jpg" alt="49/64" onclick="openModal(this.src)"><p>49/64</p></div>
+                <div><img src="IG-09/IG-09-050.jpg" alt="50/64" onclick="openModal(this.src)"><p>50/64</p></div>
+                <div><img src="IG-09/IG-09-051.jpg" alt="51/64" onclick="openModal(this.src)"><p>51/64</p></div>
+                <div><img src="IG-09/IG-09-052.jpg" alt="52/64" onclick="openModal(this.src)"><p>52/64</p></div>
+                <div><img src="IG-09/IG-09-053.jpg" alt="53/64" onclick="openModal(this.src)"><p>53/64</p></div>
+                <div><img src="IG-09/IG-09-054.jpg" alt="54/64" onclick="openModal(this.src)"><p>54/64</p></div>
+                <div><img src="IG-09/IG-09-055.jpg" alt="55/64" onclick="openModal(this.src)"><p>55/64</p></div>
+                <div><img src="IG-09/IG-09-056.jpg" alt="56/64" onclick="openModal(this.src)"><p>56/64</p></div>
+                <div><img src="IG-09/IG-09-057.jpg" alt="57/64" onclick="openModal(this.src)"><p>57/64</p></div>
+                <div><img src="IG-09/IG-09-058.jpg" alt="58/64" onclick="openModal(this.src)"><p>58/64</p></div>
+                <div><img src="IG-09/IG-09-059.jpg" alt="59/64" onclick="openModal(this.src)"><p>59/64</p></div>
+                <div><img src="IG-09/IG-09-060.jpg" alt="60/64" onclick="openModal(this.src)"><p>60/64</p></div>
+                <div><img src="IG-09/IG-09-061.jpg" alt="61/64" onclick="openModal(this.src)"><p>61/64</p></div>
+                <div><img src="IG-09/IG-09-062.jpg" alt="62/64" onclick="openModal(this.src)"><p>62/64</p></div>
+                <div><img src="IG-09/IG-09-063.jpg" alt="63/64" onclick="openModal(this.src)"><p>63/64</p></div>
+                <div><img src="IG-09/IG-09-064.jpg" alt="64/64" onclick="openModal(this.src)"><p>64/64</p></div>
+            </div>
+
+            <div id="modal" class="modal" onclick="closeModal()">
+                <img id="modal-img" src="" onclick="event.stopPropagation();">
+            </div>
+
+</section>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("side-menu");
+            if (menu.style.left === "0px") {
+                menu.style.left = "-300px";
+            } else {
+                menu.style.left = "0px";
+            }
+        }
+
+        function openModal(imgSrc) {
+            var modal = document.getElementById("modal");
+            var modalImg = document.getElementById("modal-img");
+
+            modal.style.display = "flex"; // Se muestra solo cuando se hace clic en una imagen
+            modalImg.src = imgSrc;
+        }
+
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Cerrar con tecla "Escape"
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
