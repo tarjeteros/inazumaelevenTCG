@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    var GOATCOUNTER_ENDPOINT = 'https://tarjeteros.goatcounter.com/count';
+
     function getById(id) {
         return document.getElementById(id);
     }
@@ -46,6 +48,34 @@
         link.appendChild(logo);
     }
 
+    function isLocalHost(hostname) {
+        return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1';
+    }
+
+    function enableAnalytics() {
+        if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') {
+            return;
+        }
+        if (isLocalHost(window.location.hostname)) {
+            return;
+        }
+        if (document.querySelector('script[data-goatcounter]')) {
+            return;
+        }
+
+        window.goatcounter = window.goatcounter || {};
+        // Agrupa todo el sitio en una sola ruta para evitar contar una visita por subpágina.
+        window.goatcounter.path = function () {
+            return '/site';
+        };
+
+        var script = document.createElement('script');
+        script.setAttribute('data-goatcounter', GOATCOUNTER_ENDPOINT);
+        script.setAttribute('async', 'async');
+        script.setAttribute('src', 'https://gc.zgo.at/count.js');
+        document.head.appendChild(script);
+    }
+
     window.toggleMenu = function toggleMenu() {
         var menu = getById('side-menu');
         if (!menu) {
@@ -83,8 +113,12 @@
     });
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', enableLogoHomeLink);
+        document.addEventListener('DOMContentLoaded', function () {
+            enableLogoHomeLink();
+            enableAnalytics();
+        });
     } else {
         enableLogoHomeLink();
+        enableAnalytics();
     }
 })();
