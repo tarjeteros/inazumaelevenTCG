@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../ui/icon.png">
+    <link rel="shortcut icon" href="../ui/icon.png">
+    <link rel="apple-touch-icon" href="../ui/icon.png">
+
+
+    <title>IG-10 JAPONÉS</title>
+        <link rel="stylesheet" href="../css/sidebar-menu.css">
+    <link rel="stylesheet" href="../css/collection.css">
+
+</head>
+<body>
+
+    <header>
+        <img src="../ui/logo.png" alt="Inazuma Eleven TCG Logo" class="logo">
+    </header>
+
+    <!-- Botón para abrir el menú -->
+    <button class="menu-button" onclick="toggleMenu()">
+        <img src="../botones/menu.png" alt="Menú">
+    </button>
+
+    <!-- Menú lateral -->
+    <div id="side-menu" class="side-menu"></div>
+
+    <section class="collections">
+        <img src="../ui/c1.png" alt="Esquina Izquierda" class="corner-images corner-left">
+        <img src="../ui/c2.png" alt="Esquina Derecha" class="corner-images corner-right">
+        <div id="collection-root"></div>
+    </section>
+
+            <script src="../js/collections-data.js"></script>
+    <script src="../js/collection-renderer.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/common.js"></script>
+</body>
+</html>
+

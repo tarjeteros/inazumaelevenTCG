@@ -1,11 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="ui/icon.png">
+    <link rel="shortcut icon" href="ui/icon.png">
+    <link rel="apple-touch-icon" href="ui/icon.png">
+
+
     <title>Penalty Legends</title>
 
-    <!-- Fallback desde Google Fonts -->
+        <link rel="stylesheet" href="css/sidebar-menu.css">
+<!-- Fallback desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
@@ -169,62 +175,6 @@
                 }
 
         /* Botón menú lateral (igual que tu otra página) */
-        .menu-button {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-            .menu-button img {
-                width: 50px;
-                height: auto;
-            }
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100%;
-            background: rgba(50, 50, 50, 0.95);
-            padding-top: 60px;
-            transition: 0.3s;
-            z-index: 999;
-            overflow-y: auto;
-            max-height: 100vh;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-            .side-menu::-webkit-scrollbar {
-                display: none;
-            }
-
-            .side-menu h3 {
-                color: white;
-                font-size: 20px;
-                padding: 10px 0;
-                margin: 10px auto;
-                text-align: center;
-                border-bottom: 2px solid white;
-                width: 80%;
-            }
-
-            .side-menu a {
-                display: block;
-                padding: 15px;
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-            }
-
-                .side-menu a:hover {
-                    background: rgba(255, 255, 255, 0.2);
-                }
 
         /* ======= Responsive: calcado del 1-1.html ======= */
         @media (max-width: 768px) {
@@ -295,81 +245,7 @@
     </button>
 
     <!-- Menú lateral (mismo contenido que en tus páginas) -->
-    <div id="side-menu" class="side-menu">
-        <a href="https://www.youtube.com/@Tarjeteros">Canal de Tarjeteros</a>
-        <a href="https://linktr.ee/tcg_inazuma">Traducción de Cartas</a>
-        <a href="https://youtu.be/ExJHUj1Bmsc?si=Lni2C1W09aUMpjYa">Tutorial para Aprender a Jugar</a>
-        <a href="penaltylegends.html">FANGAME</a>
-
-        <h3>Inazuma Eleven 1</h3>
-        <a href="1-1.html">1-1 ESP</a>
-        <a href="1-2.html">1-2</a>
-        <a href="R1.html">R1</a>
-
-        <h3>Inazuma Eleven 2</h3>
-        <a href="2-1.html">2-1</a>
-        <a href="2-2.html">2-2</a>
-        <a href="2-3.html">2-3</a>
-        <a href="2-4.html">2-4</a>
-        <a href="R2.html">R2</a>
-
-        <h3>Inazuma Eleven 3</h3>
-        <a href="3-1.html">3-1</a>
-        <a href="3-2.html">3-2</a>
-        <a href="3-3.html">3-3</a>
-        <a href="3-4.html">3-4</a>
-        <a href="3-5.html">3-5</a>
-        <a href="3-6.html">3-6</a>
-
-        <h3>Barajas</h3>
-        <a href="y1.html">Y-1 ESP</a>
-        <a href="y2.html">Y-2</a>
-        <a href="y3.html">Y-3</a>
-        <a href="y4.html">Y-4</a>
-        <a href="y5.html">Y-5</a>
-        <a href="y6.html">Y-6</a>
-        <a href="y7.html">Y-7</a>
-        <a href="y8.html">Y-8</a>
-        <a href="y9.html">Y-9</a>
-
-        <h3>Promos</h3>
-        <a href="P.html">P1</a>
-        <a href="P2">P2</a>
-
-        <h3>Inazuma Eleven GO</h3>
-        <a href="IG-00.html">IG-00</a>
-        <a href="IG-01.html">IG-01</a>
-        <a href="IG-02.html">IG-02</a>
-        <a href="IG-03.html">IG-03</a>
-        <a href="IG-04.html">IG-04</a>
-        <a href="IG-05.html">IG-05</a>
-
-        <h3>Inazuma Eleven GO Chrono Stone</h3>
-        <a href="IG-07.html">IG-07</a>
-        <a href="IG-08.html">IG-08</a>
-        <a href="IG-09.html">IG-09</a>
-        <a href="IG-010.html">IG-10</a>
-        <a href="IG-012.html">IG-12</a>
-
-        <h3>Inazuma Eleven GO Galaxy</h3>
-        <a href="IG-014.html">IG-14</a>
-        <a href="IG-015.html">IG-15</a>
-        <a href="IG-016.html">IG-16</a>
-
-        <h3>Colecciones especiales</h3>
-        <a href="IG-06.html">IG-06</a>
-        <a href="IG-011.html">IG-11</a>
-        <a href="IG-013.html">IG-13</a>
-        <a href="IG-017.html">IG-17</a>
-
-        <h3>Promos GO</h3>
-        <a href="PromosGO.html">Promos GO</a>
-
-        <h3>Colecciones traducidas</h3>
-        <a href="1-2 ESP.html">1-2 ESP</a>
-        <h3> </h3>
-        <h3> </h3>
-    </div>
+    <div id="side-menu" class="side-menu"></div>
 
     <section class="collections">
         <img src="ui/c1.png" alt="Esquina Izquierda" class="corner-images corner-left">
@@ -416,33 +292,8 @@
         </div>
     </section>
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("side-menu");
-            if (menu.style.left === "0px") {
-                menu.style.left = "-300px";
-            } else {
-                menu.style.left = "0px";
-            }
-        }
-
-        function openModal(imgSrc) {
-            var modal = document.getElementById("modal");
-            var modalImg = document.getElementById("modal-img");
-            modal.style.display = "flex";
-            modalImg.src = imgSrc;
-        }
-
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-
-        // Cerrar con tecla "Escape"
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-    </script>
+        <script src="js/menu.js"></script>
+    <script src="js/common.js"></script>
 </body>
 </html>
+
